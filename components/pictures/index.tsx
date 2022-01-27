@@ -1,22 +1,34 @@
-import React from 'react';
-import axios from 'axios'
+import { useEffect } from 'react';
+import axios from 'axios';
 import useSWR, {Key} from "swr";
 import {IconButton, ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
+interface PicturesProps {
+  setLoader(arg: boolean): void;
+}
+
 interface ApodType {
   url: string;
   title: string;
   copyright: string;
+  media_type: string;
+  thumbnail_url: string;
 }
 
-function Pictures() {
-  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-10"}&end_date=${"2022-01-27"}&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
+function Pictures({setLoader}: PicturesProps) {
+  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-10"}&end_date=${"2022-01-27"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
   const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
 
-  if (error) return "Sorry, we have encountered an error."
+  useEffect(()=>{
+    if (apods) {
+      setLoader(true)
+    }
+  },[apods])
+
+  if (error) return <div>Sorry, we have encountered an error.</div>
 
   if (apods) {
     return (
@@ -24,22 +36,29 @@ function Pictures() {
           {apods.map((item) => (
               <ImageListItem key={item.url}>
                 <img
-                    src={`${item.url}?w=164&h=164&fit=crop&auto=format`}
+                    src={item.media_type==="image" ? `${item.url}?w=164&h=164&fit=crop&auto=format` : `${item.thumbnail_url}?w=164&h=164&fit=crop&auto=format`}
                     srcSet={`${item.url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                     alt={item.title}
                     loading="lazy"
                 />
                 <ImageListItemBar
+                    sx={{
+                      background:
+                          'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+                          'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                    }}
                     title={item.title}
-                    subtitle={`author: ${item.copyright ? item.copyright : 'unknown'}`}
+                    subtitle={<span>author: {item.copyright ? item.copyright : "unknown"}</span>}
+                    position="top"
                     actionIcon={
                       <IconButton
-                          sx={{color: 'rgba(255, 255, 255, 0.54)'}}
-                          aria-label={`info about ${item.title}`}
+                          sx={{ color: 'white' }}
+                          aria-label={`star ${item.title}`}
                       >
-                        <FavoriteBorderIcon/>
+                        <FavoriteBorderIcon />
                       </IconButton>
                     }
+                    actionPosition="right"
                 />
               </ImageListItem>
           ))}
@@ -47,7 +66,7 @@ function Pictures() {
     );
   }
 
-  return "Loading..."
+  return <div>Loading...</div>
 
 }
 
