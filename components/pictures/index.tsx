@@ -19,7 +19,7 @@ interface ApodType {
 }
 
 function Pictures({setLoader}: PicturesProps) {
-  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-10"}&end_date=${"2022-01-27"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
+  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-09"}&end_date=${"2022-01-27"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
   const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
 
   useEffect(()=>{
