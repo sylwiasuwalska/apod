@@ -35,7 +35,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        run: echo Currently using node.js ${{ matrix.node-version }}
 
       # Runs a set of commands using the runners shell
       - name: Install, build and run tests
