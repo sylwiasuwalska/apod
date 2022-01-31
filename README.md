@@ -4,13 +4,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Use next.js :rocket:
-- [x] Use material-ui :crayon:
-- [x] Use useSWR for NASA APOD API 	:satellite: :moon:
+- [x] Use next.js :rocket: :rocket: :rocket:
+- [x] Use material-ui :crayon: :crayon: :crayon:
+- [x] Use useSWR for NASA APOD API 	:satellite: :moon: :satellite: :moon:
 - [ ] Use SSR
-- [x] Add testing libraries and basic tests :test_tube:
+- [x] Add testing libraries and basic tests :test_tube: :test_tube: :test_tube:
 - [ ] Add tests, tests and more tests
-- [x] Add GitHub Action for testing :clapper:
+- [x] Add GitHub Action for testing :clapper: :clapper: :clapper:
 - [ ] Add GitHub Action for deploying
 
 
