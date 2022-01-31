@@ -39,8 +39,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Install, build and run tests
         run: |
-          git --version
-          npm --version
           npm install -g yarn
           yarn install
           yarn build
