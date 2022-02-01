@@ -1,5 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
+## Live demo
+Live demo is available [here!](https://apod-mu.vercel.app/) :tada: :tada: :tada: 
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -12,6 +12,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [ ] Add tests, tests and more tests
 - [x] Add GitHub Action for testing :clapper: :clapper: :clapper:
 - [ ] Add GitHub Action for deploying
+- [ ] Use Vercel for hosting :checkered_flag: :checkered_flag:
 
 
 
