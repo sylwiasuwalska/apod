@@ -26,7 +26,7 @@ function Pictures({setLoader}: PicturesProps) {
     if (apods) {
       setLoader(true)
     }
-  },[apods])
+  },[setLoader,apods])
 
   if (error) return <div>Sorry, we have encountered an error.</div>
 
@@ -35,9 +35,9 @@ function Pictures({setLoader}: PicturesProps) {
         <ImageList variant="masonry" cols={3} gap={8}>
           {apods.map((item) => (
               <ImageListItem key={item.url}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src={item.media_type==="image" ? `${item.url}?w=164&h=164&fit=crop&auto=format` : `${item.thumbnail_url}?w=164&h=164&fit=crop&auto=format`}
-                    srcSet={`${item.url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                     alt={item.title}
                     loading="lazy"
                 />

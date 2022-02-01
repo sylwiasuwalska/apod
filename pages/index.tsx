@@ -7,6 +7,7 @@ import {createTheme, ThemeProvider} from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
+    mode: 'dark',
     background: {
       default: '#000'
     },
@@ -34,7 +35,7 @@ const Home: NextPage = () => {
           <meta name="description" content="Astronomy Picture of the Day"/>
           <link rel="icon" href="/logo.svg"/>
         </Head>
-        <Main/>
+        <Main />
       </ThemeProvider>
   )
 }
