@@ -1,3 +1,6 @@
+## General info
+Project in progress as a hobby
+
 ## Live demo
 Live demo is available [here!](https://apod-mu.vercel.app/) :tada: :tada: :tada: 
 
@@ -13,7 +16,6 @@ Live demo is available [here!](https://apod-mu.vercel.app/) :tada: :tada: :tada:
 - [x] Add GitHub Action for testing :clapper: :clapper: :clapper:
 - [ ] Add GitHub Action for deploying
 - [ ] Use Vercel for hosting :checkered_flag: :checkered_flag:
-
 
 
 ## Getting Started

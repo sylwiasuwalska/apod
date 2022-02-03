@@ -33,7 +33,7 @@ function PictureTile({item}: PictureTileProps) {
                   'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
             }}
             title={item.title}
-            subtitle={<span>author: {item.copyright ? item.copyright : "unknown"}</span>}
+            subtitle={item.copyright && <span>author: {item.copyright}</span>}
             position="top"
             //TODO: add to favourites
             actionIcon={

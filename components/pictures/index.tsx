@@ -2,22 +2,19 @@ import React, {Fragment, useState} from 'react';
 import axios from 'axios';
 import useSWR, {Key} from "swr";
 import {
-  Button,
-Dialog, DialogActions,
-  DialogContent,
   ImageList,
-  ImageListItem, Paper,
-  Skeleton,
-  Typography
+  ImageListItem,
+  Skeleton
 } from "@mui/material";
 import {Box} from '@mui/system';
 import PictureTile, {ApodType} from "../pictureTile";
+import PictureDialog from "../pictureDialog";
 
-const fetcher = (url: string) => axios.get(url).then(res => res.data)
+export const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
 
 function Pictures() {
-  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-01"}&end_date=${"2022-01-18"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
+  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-12"}&end_date=${"2022-01-26"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
   const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
   const [currentItem, setCurrentItem] = useState<ApodType | undefined>()
   const [open, setOpen] = useState(false);
@@ -28,7 +25,7 @@ function Pictures() {
 
   const handleClose = () => setOpen(false);
 
-  const placeholders = [...Array(18)]
+  const placeholders = [...Array(15)]
 
   if (error) return <div>Sorry, we have encountered an error.</div>
 
@@ -39,51 +36,9 @@ function Pictures() {
               <div key={item.url} onClick={() => handleOpen(item)}>
                 <PictureTile item={item}/>
               </div>
-
           ))}
         </ImageList>
-          <Dialog
-              fullWidth
-              maxWidth={"lg"}
-              open={open}
-              onClose={handleClose}
-          >
-            <DialogContent>
-              <Box sx={{display: 'flex', alignItems: 'flex-end' }}>
-                <Box sx={{
-                  backgroundImage: `url(${currentItem?.url})`,
-                  minHeight: '400px',
-                  height: '500px',
-                  maxHeight: '80%',
-                  backgroundSize: 'cover',
-                  backgroundPosition: '50% 50%',
-                  maxWidth: '80%',
-                  width: '80%',
-                  borderRadius: 1
-                }} />
-                <Paper elevation={6} sx={{width: '60%', height: '60%', margin: '0 0 30px -40px'}}>
-
-                  <Typography variant="h5" component="h2" sx={{padding: "25px 24px 0 24px", textAlign: 'right'}}>
-                    {currentItem?.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{textAlign: 'right', paddingRight: 3, fontWeight: 'light'}} gutterBottom>
-                    {currentItem?.copyright}
-                  </Typography>
-
-                  <Typography variant="body2" sx={{textAlign: 'justify', padding: 3,}} gutterBottom>
-                    {currentItem?.explanation}
-                  </Typography>
-                  <Typography variant="body2" sx={{textAlign: 'right', padding: 3, fontWeight: 'light', fontStyle: 'italic'}} gutterBottom>
-                    {currentItem?.date}
-                  </Typography>
-                </Paper>
-
-              </Box>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Close</Button>
-            </DialogActions>
-          </Dialog>
+          <PictureDialog item={currentItem} isOpen={open} handleClose={handleClose} />
         </Fragment>
     );
   }
