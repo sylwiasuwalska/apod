@@ -1,5 +1,5 @@
 ## General info
-Project in progress as a hobby
+Project in progress as a hobby :bulb:
 
 ## Live demo
 Live demo is available [here!](https://apod-mu.vercel.app/) :tada: :tada: :tada: 
