@@ -1,72 +1,110 @@
-import { useEffect } from 'react';
+import React, {Fragment, useState} from 'react';
 import axios from 'axios';
 import useSWR, {Key} from "swr";
-import {IconButton, ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import {
+  Button,
+Dialog, DialogActions,
+  DialogContent,
+  ImageList,
+  ImageListItem, Paper,
+  Skeleton,
+  Typography
+} from "@mui/material";
+import {Box} from '@mui/system';
+import PictureTile, {ApodType} from "../pictureTile";
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
-interface PicturesProps {
-  setLoader(arg: boolean): void;
-}
 
-interface ApodType {
-  url: string;
-  title: string;
-  copyright: string;
-  media_type: string;
-  thumbnail_url: string;
-}
-
-function Pictures({setLoader}: PicturesProps) {
+function Pictures() {
   const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-09"}&end_date=${"2022-01-27"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
   const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
+  const [currentItem, setCurrentItem] = useState<ApodType | undefined>()
+  const [open, setOpen] = useState(false);
+  const handleOpen = (item: ApodType) => {
+    setCurrentItem(item)
+    setOpen(true)
+  };
 
-  useEffect(()=>{
-    if (apods) {
-      setLoader(true)
-    }
-  },[setLoader,apods])
+  const handleClose = () => setOpen(false);
+
+  const placeholders = [...Array(18)]
 
   if (error) return <div>Sorry, we have encountered an error.</div>
 
   if (apods) {
     return (
-        <ImageList variant="masonry" cols={3} gap={8}>
+        <Fragment><ImageList variant="masonry" cols={3} gap={8}>
           {apods.map((item) => (
-              <ImageListItem key={item.url}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src={item.media_type==="image" ? `${item.url}?w=164&h=164&fit=crop&auto=format` : `${item.thumbnail_url}?w=164&h=164&fit=crop&auto=format`}
-                    alt={item.title}
-                    loading="lazy"
-                />
-                <ImageListItemBar
-                    sx={{
-                      background:
-                          'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-                          'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                    }}
-                    title={item.title}
-                    subtitle={<span>author: {item.copyright ? item.copyright : "unknown"}</span>}
-                    position="top"
-                    actionIcon={
-                      <IconButton
-                          sx={{ color: 'white' }}
-                          aria-label={`star ${item.title}`}
-                      >
-                        <FavoriteBorderIcon />
-                      </IconButton>
-                    }
-                    actionPosition="right"
-                />
-              </ImageListItem>
+              <div key={item.url} onClick={() => handleOpen(item)}>
+                <PictureTile item={item}/>
+              </div>
+
           ))}
         </ImageList>
+          <Dialog
+              fullWidth
+              maxWidth={"lg"}
+              open={open}
+              onClose={handleClose}
+          >
+            <DialogContent>
+              <Box sx={{display: 'flex', alignItems: 'flex-end' }}>
+                <Box sx={{
+                  backgroundImage: `url(${currentItem?.url})`,
+                  minHeight: '400px',
+                  height: '500px',
+                  maxHeight: '80%',
+                  backgroundSize: 'cover',
+                  backgroundPosition: '50% 50%',
+                  maxWidth: '80%',
+                  width: '80%',
+                  borderRadius: 1
+                }}></Box>
+                <Paper elevation={6} sx={{width: '60%', height: '60%', margin: '0 0 30px -40px'}}>
+
+                  <Typography variant="h5" component="h2" sx={{padding: "25px 24px 0 24px", textAlign: 'right'}}>
+                    {currentItem?.title}
+                  </Typography>
+                  <Typography variant="body2" sx={{textAlign: 'right', paddingRight: 3, fontWeight: 'light'}} gutterBottom>
+                    {currentItem?.copyright}
+                  </Typography>
+
+                  <Typography variant="body2" sx={{textAlign: 'justify', padding: 3,}} gutterBottom>
+                    {currentItem?.explanation}
+                  </Typography>
+                  <Typography variant="body2" sx={{textAlign: 'right', padding: 3, fontWeight: 'light', fontStyle: 'italic'}} gutterBottom>
+                    {currentItem?.date}
+                  </Typography>
+                </Paper>
+
+              </Box>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Close</Button>
+            </DialogActions>
+          </Dialog>
+        </Fragment>
     );
   }
 
-  return <div>Loading...</div>
+  return <ImageList variant="masonry" cols={3} gap={8}>
+    {placeholders.map((item, index) => {
+      return <ImageListItem key={index} sx={{width: '100%', padding: '20px'}}>
+        <Box sx={{display: 'flex', alignItems: 'center'}}>
+
+          <Box sx={{display: 'flex', flexDirection: 'column', width: '100%',}}>
+            <Skeleton animation="wave" height={30} width="100%"/>
+            <Skeleton animation="wave" height={40} width="100%"/>
+          </Box>
+          <Skeleton animation="wave" width={80} height={100} sx={{marginLeft: 4}}/>
+        </Box>
+
+        <Skeleton sx={{height: 190, marginTop: 2}} animation="wave" variant="rectangular"/>
+      </ImageListItem>
+    })}
+
+  </ImageList>
 
 }
 

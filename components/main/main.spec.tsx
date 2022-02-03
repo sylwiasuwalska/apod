@@ -5,8 +5,10 @@ describe('Main', () => {
   it('renders a heading', () => {
     render(<Main />)
 
-    const heading = screen.getByText("Astronomy Picture of the Day");
+    const heading1 = screen.getByText("Astronomy");
+    const heading2 = screen.getByText("Picture of the Day");
 
-    expect(heading).toBeInTheDocument()
+    expect(heading1).toBeInTheDocument()
+    expect(heading2).toBeInTheDocument()
   })
 })
