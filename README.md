@@ -15,7 +15,7 @@ Live demo is available [here!](https://apod-mu.vercel.app/) :tada: :tada: :tada:
 - [ ] Add tests, tests and more tests
 - [x] Add GitHub Action for testing :clapper: :clapper: :clapper:
 - [ ] Add GitHub Action for deploying
-- [ ] Use Vercel for hosting :checkered_flag: :checkered_flag:
+- [x] Use Vercel for hosting :checkered_flag: :checkered_flag: :checkered_flag:
 
 
 ## Getting Started
