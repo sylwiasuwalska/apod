@@ -17,7 +17,7 @@ const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
 
 function Pictures() {
-  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-09"}&end_date=${"2022-01-27"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
+  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-01"}&end_date=${"2022-01-18"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
   const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
   const [currentItem, setCurrentItem] = useState<ApodType | undefined>()
   const [open, setOpen] = useState(false);
@@ -60,7 +60,7 @@ function Pictures() {
                   maxWidth: '80%',
                   width: '80%',
                   borderRadius: 1
-                }}></Box>
+                }} />
                 <Paper elevation={6} sx={{width: '60%', height: '60%', margin: '0 0 30px -40px'}}>
 
                   <Typography variant="h5" component="h2" sx={{padding: "25px 24px 0 24px", textAlign: 'right'}}>

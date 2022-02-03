@@ -38,7 +38,7 @@ function PictureTile({item}: PictureTileProps) {
             //TODO: add to favourites
             actionIcon={
               <IconButton
-                  sx={{color: 'white'}}
+                  sx={{color: 'primary.main'}}
                   aria-label={`star ${item.title}`}
               >
                 <FavoriteBorderIcon/>

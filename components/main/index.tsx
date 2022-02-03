@@ -19,7 +19,7 @@ function Main() {
               Astronomy
             </Typography>
             <Typography sx={{
-              color: 'primary.contrastText',
+              color: 'primary.light',
               fontFamily: "Major Mono Display",
               fontSize: '3.5rem',
               maxWidth: '100%',
