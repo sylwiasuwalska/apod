@@ -20,6 +20,7 @@ function Pictures() {
   const [currentItem, setCurrentItem] = useState<ApodType | undefined>()
   const [open, setOpen] = useState(false);
 
+  const mobile = useMediaQuery('(max-width:600px)');
   const xs = useMediaQuery('(min-width:600px)');
   const sm = useMediaQuery('(min-width:900px)');
   const md = useMediaQuery('(min-width:1200px)');
@@ -28,6 +29,7 @@ function Pictures() {
     if (md) return 3;
     if (sm) return 2;
     if (xs) return 1;
+    if (mobile) return 1;
   }
 
   const handleOpen = (item: ApodType) => {

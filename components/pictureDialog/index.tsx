@@ -20,7 +20,7 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
       >
 
         <DialogContent>
-          <Box sx={{display: 'flex', alignItems: 'flex-end' }}>
+          <Box sx={{display: 'flex', alignItems: 'flex-end', flexDirection: ['column', 'column', 'row', 'row', 'row'] }}>
             <Box sx={{
               backgroundImage: `url(${imgUrl})`,
               minHeight: '400px',
@@ -28,11 +28,13 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
               maxHeight: '80%',
               backgroundSize: 'cover',
               backgroundPosition: '50% 50%',
-              maxWidth: '80%',
-              width: '80%',
+              width:['100%', '100%', '100%', '80%', '80%'],
               borderRadius: 1
             }} />
-            <Paper elevation={6} sx={{width: '60%', height: '60%', margin: '0 0 30px -40px'}}>
+            <Paper elevation={6} sx={{width: ['100%', '100%', '100%', '60%', '60%'],
+              height: '60%',
+              margin: '0 0 30px -40px'
+            }}>
 
               <Typography variant="h5" component="h2" sx={{padding: "25px 24px 0 24px", textAlign: 'right'}}>
                 {item?.title}
