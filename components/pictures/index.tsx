@@ -58,7 +58,7 @@ function Pictures() {
     );
   }
 
-  return <ImageList variant="masonry" cols={3} gap={8}>
+  return <ImageList variant="masonry" cols={getNumberOfColumns()} gap={8}>
     {placeholders.map((item, index) => {
       return <ImageListItem key={index} sx={{width: '100%', padding: '20px'}}>
         <Box sx={{display: 'flex', alignItems: 'center'}}>
