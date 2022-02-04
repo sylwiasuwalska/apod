@@ -11,4 +11,12 @@ describe('Main', () => {
     expect(heading1).toBeInTheDocument()
     expect(heading2).toBeInTheDocument()
   })
+
+  it('renders a date picker', () => {
+    render(<Main />)
+
+    const datePickerLabel = screen.getByLabelText("Choose the date");
+
+    expect(datePickerLabel).toBeInTheDocument()
+  })
 })

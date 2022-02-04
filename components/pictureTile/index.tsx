@@ -23,7 +23,7 @@ function PictureTile({item}: PictureTileProps) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
             src={item.media_type === "image" ? `${item.url}?w=164&h=164&fit=crop&auto=format` : `${item.thumbnail_url}?w=164&h=164&fit=crop&auto=format`}
-            alt={item.title}
+            alt={`${item.title} image`}
             loading="lazy"
         />
         <ImageListItemBar
