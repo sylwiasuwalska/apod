@@ -9,6 +9,7 @@ import {
 import {Box} from '@mui/system';
 import PictureTile, {ApodType} from "../pictureTile";
 import PictureDialog from "../pictureDialog";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
@@ -18,6 +19,17 @@ function Pictures() {
   const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
   const [currentItem, setCurrentItem] = useState<ApodType | undefined>()
   const [open, setOpen] = useState(false);
+
+  const xs = useMediaQuery('(min-width:600px)');
+  const sm = useMediaQuery('(min-width:900px)');
+  const md = useMediaQuery('(min-width:1200px)');
+
+  const getNumberOfColumns = () => {
+    if (md) return 3;
+    if (sm) return 2;
+    if (xs) return 1;
+  }
+
   const handleOpen = (item: ApodType) => {
     setCurrentItem(item)
     setOpen(true)
@@ -31,7 +43,8 @@ function Pictures() {
 
   if (apods) {
     return (
-        <Fragment><ImageList variant="masonry" cols={3} gap={8}>
+        <Fragment>
+          <ImageList variant="masonry" cols={getNumberOfColumns()} gap={8}>
           {apods.map((item) => (
               <div key={item.url} onClick={() => handleOpen(item)}>
                 <PictureTile item={item}/>

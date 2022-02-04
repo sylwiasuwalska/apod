@@ -1,19 +1,21 @@
 import React from 'react';
-import {Box, Container, Typography} from "@mui/material";
+import {Box, Container, Grid, Typography} from "@mui/material";
 import Pictures from "../pictures";
 import DateSetter from "../dateSetter";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 
 function Main() {
+  const md = useMediaQuery('(min-width:1200px)');
 
   return (
       <Container fixed>
-        <Box sx={{margin: '60px 0 60px 0', borderBottom: 1 , borderColor: 'primary.contrastText', display: 'flex', alignItems:'flex-end'}}>
-          <Box>
+        <Grid container columns={{ xs: 1, sm: 2, md: 2 }} sx={{margin: '60px 0 60px 0', borderBottom: 1 , borderColor: 'primary.contrastText'}}>
+          <Grid item >
             <Typography sx={{
               color: 'primary.contrastText',
               fontFamily: "Major Mono Display",
-              fontSize: '7rem',
+              fontSize:  md ? '7rem' : '4rem',
               maxWidth: '50%'
             }} variant="h1" component="div">
               Astronomy
@@ -21,17 +23,17 @@ function Main() {
             <Typography sx={{
               color: 'primary.light',
               fontFamily: "Major Mono Display",
-              fontSize: '3.5rem',
+              fontSize: md ? '3.5rem' : '2.5rem',
               maxWidth: '100%',
               marginBottom: 6
             }} variant="h1" component="div" gutterBottom>
               Picture of the Day
             </Typography>
-          </Box>
-          <Box sx={{marginBottom: 6, display: 'flex', justifyContent: 'center', width: '100%'}}>
+          </Grid>
+          <Grid item sx={{marginBottom: 6, display: 'flex', justifyContent: 'center', alignItems:'flex-end', flexGrow:'1'}}>
             <DateSetter/>
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
         <Box>
           <Pictures />
         </Box>
