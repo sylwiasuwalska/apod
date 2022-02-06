@@ -1,7 +1,9 @@
 import React, {MouseEvent} from 'react';
-import {Button, Dialog, DialogActions, DialogContent, Link, Paper, Typography} from "@mui/material";
+import {Button, Dialog, DialogActions, DialogContent, Paper, Typography} from "@mui/material";
 import {Box} from "@mui/system";
 import {ApodType} from "../pictureTile";
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
 export interface PictureDialogProps {
   item: ApodType | undefined;
@@ -46,12 +48,22 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
               <Typography variant="body2" sx={{textAlign: 'justify', padding: 3,}} gutterBottom>
                 {item?.explanation}
               </Typography>
-              {item?.media_type === "video" && <Typography variant="body2" sx={{textAlign: 'right', fontWeight: 'bold', paddingRight: 3, color: 'primary.light'}} gutterBottom>
-                <Link href={item?.url}>Watch Video</Link>
-              </Typography>}
-              <Typography variant="body2" sx={{textAlign: 'right', padding: 3, fontWeight: 'light', fontStyle: 'italic'}} gutterBottom>
+              <Typography variant="body2" sx={{textAlign: 'right', paddingRight: 3, fontWeight: 'light', fontStyle: 'italic'}} gutterBottom>
                 {item?.date}
               </Typography>
+
+              {item?.media_type === "video" && <Typography variant="body2" sx={{textAlign: 'right', fontWeight: 'bold', padding: 3, color: 'primary.light'}} gutterBottom>
+                  <Button size="medium" variant="outlined" href={item?.url} target="_blank" rel="noreferrer" startIcon={<YouTubeIcon />}>
+                      Watch video in a new tab
+                  </Button>
+              </Typography>}
+              {item?.media_type === "image" && <Typography variant="body2" sx={{textAlign: 'right', fontWeight: 'bold', padding: 3, color: 'primary.light'}} gutterBottom>
+                  <Button size="medium" variant="outlined" href={item?.hdurl} target="_blank" rel="noreferrer" startIcon={<ZoomInIcon />}>
+                      View HD picture in a new tab
+                  </Button>
+              </Typography>}
+
+
             </Paper>
 
           </Box>

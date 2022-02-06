@@ -14,6 +14,7 @@ export interface ApodType {
   thumbnail_url: string;
   explanation: string;
   date: string;
+  hdurl: string;
 }
 
 
