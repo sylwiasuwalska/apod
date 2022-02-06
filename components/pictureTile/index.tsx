@@ -1,6 +1,8 @@
 import React from 'react';
-import {IconButton, ImageListItem, ImageListItemBar} from "@mui/material";
+import {IconButton, ImageListItem, ImageListItemBar, Tooltip} from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import {useFavourite} from "../../hooks/useFavourite";
 
 interface PictureTileProps {
   item: ApodType;
@@ -19,6 +21,13 @@ export interface ApodType {
 
 
 function PictureTile({item}: PictureTileProps) {
+  const {isFavourite, toggleFavourite} = useFavourite(item.date);
+
+  const handleClickingFavourite = (e: React.MouseEvent<HTMLElement>) => {
+    toggleFavourite(item.date);
+    e.stopPropagation();
+  }
+
   return (
       <ImageListItem>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -36,18 +45,20 @@ function PictureTile({item}: PictureTileProps) {
             title={item.title}
             subtitle={item.copyright && <span>author: {item.copyright}</span>}
             position="top"
-            //TODO: add to favourites
+            // TODO: Adding to favourites
             actionIcon={
-              <IconButton
-                  sx={{color: 'primary.main'}}
-                  aria-label={`star ${item.title}`}
-              >
-                <FavoriteBorderIcon/>
-              </IconButton>
+              <Tooltip title={isFavourite ? "Remove from favourites" : "Add to favourites"} placement="right-start" arrow>
+                <IconButton
+                    sx={{color: 'primary.main'}}
+                    aria-label={`star ${item.title}`}
+                    onClick={(e) => handleClickingFavourite(e)}
+                >
+                  {isFavourite ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
+                </IconButton>
+              </Tooltip>
             }
             actionPosition="right"
         />
-
       </ImageListItem>
   );
 }

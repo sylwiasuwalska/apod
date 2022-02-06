@@ -3,6 +3,7 @@ import PictureTile from './index'
 
 const mockedItemImage = {
   url: "https://mocked.url",
+  hdurl: "https://mocked.hdurl",
   title: "Mocked Item Title",
   copyright: "Mocked Item Author",
   media_type: "image",
