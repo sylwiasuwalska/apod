@@ -21,7 +21,7 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
 
         <DialogContent>
           <Box sx={{display: 'flex', alignItems: 'flex-end', flexDirection: ['column', 'column', 'row', 'row', 'row'] }}>
-            <Box sx={{
+            <Box data-testid="apod-image" sx={{
               backgroundImage: `url(${imgUrl})`,
               minHeight: '400px',
               height: '500px',
@@ -30,7 +30,7 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
               backgroundPosition: '50% 50%',
               width:['100%', '100%', '100%', '80%', '80%'],
               borderRadius: 1
-            }} />
+            }}/>
             <Paper elevation={6} sx={{width: ['100%', '100%', '100%', '60%', '60%'],
               height: '60%',
               margin: '0 0 30px -40px'
