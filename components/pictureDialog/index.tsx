@@ -13,6 +13,7 @@ export interface PictureDialogProps {
 
 function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
   const imgUrl = item?.media_type === "image" ? item?.url : item?.thumbnail_url;
+
   return (
       <Dialog
           fullWidth
@@ -22,7 +23,7 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
       >
 
         <DialogContent>
-          <Box sx={{display: 'flex', alignItems: 'flex-end', flexDirection: ['column', 'column', 'row', 'row', 'row'] }}>
+          <Box sx={{display: 'flex', alignItems: 'flex-end', flexDirection: ['column', 'column', 'row', 'row', 'row']}}>
             <Box data-testid="apod-image" sx={{
               backgroundImage: `url(${imgUrl})`,
               minHeight: '400px',
@@ -30,10 +31,11 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
               maxHeight: '80%',
               backgroundSize: 'cover',
               backgroundPosition: '50% 50%',
-              width:['100%', '100%', '100%', '80%', '80%'],
+              width: ['100%', '100%', '100%', '80%', '80%'],
               borderRadius: 1
             }}/>
-            <Paper elevation={6} sx={{width: ['100%', '100%', '100%', '60%', '60%'],
+            <Paper elevation={6} sx={{
+              width: ['100%', '100%', '100%', '60%', '60%'],
               height: '60%',
               margin: '0 0 30px -40px'
             }}>
@@ -48,17 +50,31 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
               <Typography variant="body2" sx={{textAlign: 'justify', padding: 3,}} gutterBottom>
                 {item?.explanation}
               </Typography>
-              <Typography variant="body2" sx={{textAlign: 'right', paddingRight: 3, fontWeight: 'light', fontStyle: 'italic'}} gutterBottom>
+              <Typography variant="body2"
+                          sx={{textAlign: 'right', paddingRight: 3, fontWeight: 'light', fontStyle: 'italic'}}
+                          gutterBottom>
                 {item?.date}
               </Typography>
 
-              {item?.media_type === "video" && <Typography variant="body2" sx={{textAlign: 'right', fontWeight: 'bold', padding: 3, color: 'primary.light'}} gutterBottom>
-                  <Button size="medium" variant="outlined" href={item?.url} target="_blank" rel="noreferrer" startIcon={<YouTubeIcon />}>
+              {item?.media_type === "video" && <Typography variant="body2" sx={{
+                textAlign: 'right',
+                fontWeight: 'bold',
+                padding: 3,
+                color: 'primary.light'
+              }} gutterBottom>
+                  <Button size="medium" variant="outlined" href={item?.url} target="_blank" rel="noreferrer"
+                          startIcon={<YouTubeIcon/>}>
                       Watch video in a new tab
                   </Button>
               </Typography>}
-              {item?.media_type === "image" && <Typography variant="body2" sx={{textAlign: 'right', fontWeight: 'bold', padding: 3, color: 'primary.light'}} gutterBottom>
-                  <Button size="medium" variant="outlined" href={item?.hdurl} target="_blank" rel="noreferrer" startIcon={<ZoomInIcon />}>
+              {item?.media_type === "image" && <Typography variant="body2" sx={{
+                textAlign: 'right',
+                fontWeight: 'bold',
+                padding: 3,
+                color: 'primary.light'
+              }} gutterBottom>
+                  <Button size="medium" variant="outlined" href={item?.hdurl} target="_blank" rel="noreferrer"
+                          startIcon={<ZoomInIcon/>}>
                       View HD picture in a new tab
                   </Button>
               </Typography>}
