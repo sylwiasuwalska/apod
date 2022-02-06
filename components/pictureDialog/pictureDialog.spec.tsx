@@ -61,6 +61,26 @@ describe('PictureDialog', () => {
     expect(link).toBeInTheDocument()
   })
 
+  it('renders picture dialog links with proper attributes for image', () => {
+    render(<PictureDialog item={mockedItemImage} isOpen={true} handleClose={()=>{}} />)
+
+    const link = screen.getByRole('link');
+
+    expect(link).toHaveAttribute('href', mockedItemImage.hdurl);
+    expect(link).toHaveAttribute('rel', "noreferrer");
+    expect(link).toHaveAttribute('target', "_blank");
+  })
+
+  it('renders picture dialog links with proper attributes for video', () => {
+    render(<PictureDialog item={mockedItemVideo} isOpen={true} handleClose={()=>{}} />)
+
+    const link = screen.getByRole('link');
+
+    expect(link).toHaveAttribute('href', mockedItemVideo.url);
+    expect(link).toHaveAttribute('rel', "noreferrer");
+    expect(link).toHaveAttribute('target', "_blank");
+  })
+
   it('renders picture dialog with close button', () => {
     render(<PictureDialog item={mockedItemImage} isOpen={true} handleClose={()=>{}} />)
 
