@@ -6,17 +6,17 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import {useFavourite} from "../../hooks/useFavourite";
 
 export interface PictureDialogProps {
   item: ApodType;
   isOpen: boolean;
   handleClose: (event: MouseEvent) => void;
+  isFavourite: boolean;
+  toggleFavourite: (date: string) => void;
 }
 
-function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
+function PictureDialog({item, isOpen, handleClose, isFavourite, toggleFavourite}: PictureDialogProps) {
   const imgUrl = item.media_type === "image" ? item.url : item.thumbnail_url;
-  const {isFavourite, toggleFavourite} = useFavourite(item.date);
 
   return (
       <Dialog
@@ -25,7 +25,6 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
           open={isOpen}
           onClose={handleClose}
       >
-
         <DialogContent>
           <Box sx={{display: 'flex', alignItems: 'flex-end', flexDirection: ['column', 'column', 'row', 'row', 'row']}}>
             <Box data-testid="apod-image" sx={{
@@ -92,14 +91,10 @@ function PictureDialog({item, isOpen, handleClose}: PictureDialogProps) {
                       View HD picture in a new tab
                   </Button>
               </Typography>}
-
-
             </Paper>
-
           </Box>
         </DialogContent>
         <DialogActions>
-
           <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
