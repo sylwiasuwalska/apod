@@ -31,15 +31,16 @@ export default function DateSetter() {
               value={date}
               inputFormat="yyyy/MM/dd"
               onChange={(newValue) => {
-                setOpen(true);
+
                 if (newValue) {
                   setDate(newValue.toISODate());
+                  setOpen(true);
                 }
               }}
               renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
-        <PictureDialog item={currentApod} isOpen={open} handleClose={handleClose}/>
+        {currentApod && <PictureDialog item={currentApod} isOpen={open} handleClose={handleClose}/>}
       </Fragment>
   );
 }

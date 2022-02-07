@@ -17,7 +17,7 @@ export const fetcher = (url: string) => axios.get(url).then(res => res.data)
 function Pictures() {
   const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-12"}&end_date=${"2022-01-26"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
   const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
-  const [currentItem, setCurrentItem] = useState<ApodType | undefined>()
+  const [currentItem, setCurrentItem] = useState<ApodType>()
   const [open, setOpen] = useState(false);
 
   const mobile = useMediaQuery('(max-width:600px)');
@@ -53,7 +53,7 @@ function Pictures() {
               </div>
           ))}
         </ImageList>
-          <PictureDialog item={currentItem} isOpen={open} handleClose={handleClose} />
+          {currentItem && <PictureDialog item={currentItem} isOpen={open} handleClose={handleClose} />}
         </Fragment>
     );
   }
