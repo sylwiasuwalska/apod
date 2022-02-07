@@ -8,6 +8,7 @@ import {ApodType} from "../pictureTile";
 import useSWR, {Key} from "swr";
 import {fetcher} from "../pictures";
 import { DateTime } from "luxon";
+import { useFavourite } from "../../hooks/useFavourite";
 
 
 export default function DateSetter() {
@@ -15,7 +16,7 @@ export default function DateSetter() {
   const [date, setDate] = useState<string>(DateTime.now().toISODate());
   const apiURL: Key = `https://api.nasa.gov/planetary/apod?date=${date}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
   const {data: currentApod, error} = useSWR<ApodType, boolean>(date ? apiURL : null, fetcher)
-
+  const {isFavourite, toggleFavourite} = useFavourite(date);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => setOpen(false);
@@ -31,15 +32,15 @@ export default function DateSetter() {
               value={date}
               inputFormat="yyyy/MM/dd"
               onChange={(newValue) => {
-                setOpen(true);
                 if (newValue) {
                   setDate(newValue.toISODate());
+                  setOpen(true);
                 }
               }}
               renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
-        <PictureDialog item={currentApod} isOpen={open} handleClose={handleClose}/>
+        {currentApod && <PictureDialog item={currentApod} isOpen={open} handleClose={handleClose} isFavourite={isFavourite} toggleFavourite={toggleFavourite}/>}
       </Fragment>
   );
 }

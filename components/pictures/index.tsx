@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment} from 'react';
 import axios from 'axios';
 import useSWR, {Key} from "swr";
 import {
@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import {Box} from '@mui/system';
 import PictureTile, {ApodType} from "../pictureTile";
-import PictureDialog from "../pictureDialog";
+
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const fetcher = (url: string) => axios.get(url).then(res => res.data)
@@ -17,8 +17,6 @@ export const fetcher = (url: string) => axios.get(url).then(res => res.data)
 function Pictures() {
   const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-12"}&end_date=${"2022-01-26"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
   const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
-  const [currentItem, setCurrentItem] = useState<ApodType | undefined>()
-  const [open, setOpen] = useState(false);
 
   const mobile = useMediaQuery('(max-width:600px)');
   const xs = useMediaQuery('(min-width:600px)');
@@ -32,13 +30,6 @@ function Pictures() {
     if (mobile) return 1;
   }
 
-  const handleOpen = (item: ApodType) => {
-    setCurrentItem(item)
-    setOpen(true)
-  };
-
-  const handleClose = () => setOpen(false);
-
   const placeholders = [...Array(15)]
 
   if (error) return <div>Sorry, we have encountered an error.</div>
@@ -48,12 +39,10 @@ function Pictures() {
         <Fragment>
           <ImageList variant="masonry" cols={getNumberOfColumns()} gap={8}>
           {apods.map((item) => (
-              <div key={item.url} onClick={() => handleOpen(item)}>
-                <PictureTile item={item}/>
-              </div>
+                <PictureTile key={item.url} item={item}/>
           ))}
         </ImageList>
-          <PictureDialog item={currentItem} isOpen={open} handleClose={handleClose} />
+
         </Fragment>
     );
   }
