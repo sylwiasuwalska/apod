@@ -1,6 +1,5 @@
 import React from 'react';
-import {Box, Container, Grid, Typography} from "@mui/material";
-import Pictures from "../pictures";
+import {Container, Grid, Typography} from "@mui/material";
 import DateSetter from "../dateSetter";
 
 
@@ -31,9 +30,6 @@ function Main() {
             <DateSetter/>
           </Grid>
         </Grid>
-        <Box>
-          <Pictures />
-        </Box>
       </Container>
   );
 }

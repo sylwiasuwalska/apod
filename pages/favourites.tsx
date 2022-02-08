@@ -1,12 +1,7 @@
-import type {NextPage} from 'next'
-import Head from 'next/head'
-
+import {NextPage} from "next";
+import Head from "next/head";
 import Main from "../components/main";
-import {Box, Container} from "@mui/material";
-import React, { Fragment } from 'react';
-import Pictures from "../components/pictures";
-
-
+import { Fragment } from "react";
 
 const Home: NextPage = () => {
   return (
@@ -16,12 +11,8 @@ const Home: NextPage = () => {
           <meta name="description" content="Astronomy Picture of the Day"/>
           <link rel="icon" href="/logo.svg"/>
         </Head>
-        <Main />
-        <Container fixed>
-        <Box>
-          <Pictures />
-        </Box>
-        </Container>
+        <Main/>
+        <div>Favourites</div>
       </Fragment>
   )
 }
