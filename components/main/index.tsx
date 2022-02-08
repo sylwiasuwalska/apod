@@ -7,13 +7,13 @@ import DateSetter from "../dateSetter";
 function Main() {
   return (
       <Container fixed>
-        <Grid container columns={{ xs: 1, sm: 2, md: 2 }} sx={{margin: '60px 0 60px 0', borderBottom: 1 , borderColor: 'primary.contrastText'}}>
+        <Grid container columns={{ xs: 1, sm: 2, md: 2 }} sx={{margin: '60px 0 60px 0', borderBottom: 1 , borderColor: 'primary.contrastText', justifyContent: 'center'}}>
           <Grid item >
             <Typography sx={{
               color: 'primary.contrastText',
               fontFamily: "Major Mono Display",
               fontSize:  ['3.1rem', '5rem', '7rem', '7rem', '7rem'],
-              maxWidth: '50%',
+
             }} variant="h1" component="div">
               Astronomy
             </Typography>

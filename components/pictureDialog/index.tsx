@@ -6,6 +6,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export interface PictureDialogProps {
   item: ApodType;
@@ -16,6 +17,7 @@ export interface PictureDialogProps {
 }
 
 function PictureDialog({item, isOpen, handleClose, isFavourite, toggleFavourite}: PictureDialogProps) {
+  const mobile = useMediaQuery('(max-width:600px)');
   const imgUrl = item.media_type === "image" ? item.url : item.thumbnail_url;
 
   return (
@@ -30,7 +32,7 @@ function PictureDialog({item, isOpen, handleClose, isFavourite, toggleFavourite}
             <Box data-testid="apod-image" sx={{
               backgroundImage: `url(${imgUrl})`,
               minHeight: '400px',
-              height: '500px',
+              height: mobile ? '250px': '500px',
               maxHeight: '80%',
               backgroundSize: 'cover',
               backgroundPosition: '50% 50%',
@@ -42,8 +44,9 @@ function PictureDialog({item, isOpen, handleClose, isFavourite, toggleFavourite}
                     sx={{color: 'primary.main'}}
                     aria-label={`star ${item.title}`}
                     onClick={() => toggleFavourite(item.date)}
+                    size="large"
                 >
-                  {isFavourite ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
+                  {isFavourite ? <FavoriteIcon fontSize={"large"}/> : <FavoriteBorderIcon fontSize={"large"}/>}
                 </IconButton>
               </Tooltip>
             </Box>
@@ -53,10 +56,10 @@ function PictureDialog({item, isOpen, handleClose, isFavourite, toggleFavourite}
               margin: '0 0 30px -40px'
             }}>
 
-              <Typography variant="h5" component="h2" sx={{padding: "25px 24px 0 24px", textAlign: 'right'}}>
+              <Typography variant={mobile ? "h6" : "h5"} component="h2" sx={{padding: "25px 24px 0 24px", textAlign: mobile ? 'center':'right'}}>
                 {item.title}
               </Typography>
-              <Typography variant="body2" sx={{textAlign: 'right', paddingRight: 3, fontWeight: 'light'}} gutterBottom>
+              <Typography variant="body2" sx={{textAlign: mobile ? 'center':'right', paddingRight: 3, fontWeight: 'light'}} gutterBottom>
                 {item.copyright}
               </Typography>
 
@@ -70,25 +73,25 @@ function PictureDialog({item, isOpen, handleClose, isFavourite, toggleFavourite}
               </Typography>
 
               {item.media_type === "video" && <Typography variant="body2" sx={{
-                textAlign: 'right',
+                textAlign: mobile ? 'center':'right',
                 fontWeight: 'bold',
                 padding: 3,
                 color: 'primary.light'
               }} gutterBottom>
                   <Button size="medium" variant="outlined" href={item.url} target="_blank" rel="noreferrer"
                           startIcon={<YouTubeIcon/>}>
-                      Watch video in a new tab
+                    {mobile ? "Watch video" :   "Watch video in a new tab"}
                   </Button>
               </Typography>}
               {item.media_type === "image" && <Typography variant="body2" sx={{
-                textAlign: 'right',
+                textAlign: mobile ? 'center':'right',
                 fontWeight: 'bold',
                 padding: 3,
                 color: 'primary.light'
               }} gutterBottom>
                   <Button size="medium" variant="outlined" href={item.hdurl} target="_blank" rel="noreferrer"
                           startIcon={<ZoomInIcon/>}>
-                      View HD picture in a new tab
+                    {mobile ? "View HD picture" :   "View HD picture in a new tab"}
                   </Button>
               </Typography>}
             </Paper>
