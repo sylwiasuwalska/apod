@@ -1,7 +1,7 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 
-import Main from "../components/main";
+import Header from "../components/header";
 import {Box, Container} from "@mui/material";
 import React, { Fragment } from 'react';
 import Pictures from "../components/pictures";
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           <meta name="description" content="Astronomy Picture of the Day"/>
           <link rel="icon" href="/logo.svg"/>
         </Head>
-        <Main />
+        <Header />
         <Container fixed>
         <Box>
           <Pictures />

@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {getDataFromStorage, setDataToStorage} from "../utils/getDataFromStorage";
 
+
 export const useFavourite = (date: string) => {
   const favouritePictures = getDataFromStorage("favPics");
 

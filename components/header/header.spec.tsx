@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import Main from './index'
+import Header from './index'
 
 describe('Main', () => {
   it('renders a heading', () => {
-    render(<Main />)
+    render(<Header />)
 
     const heading1 = screen.getByText("Astronomy");
     const heading2 = screen.getByText("Picture of the Day");
@@ -13,7 +13,7 @@ describe('Main', () => {
   })
 
   it('renders a date picker', () => {
-    render(<Main />)
+    render(<Header />)
 
     const datePickerLabel = screen.getByLabelText("Choose the date");
 
