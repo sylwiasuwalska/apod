@@ -13,7 +13,7 @@ export interface PictureDialogProps {
   isOpen: boolean;
   handleClose: (event: MouseEvent) => void;
   isFavourite: boolean;
-  toggleFavourite: (date: string) => void;
+  toggleFavourite: (item: ApodType) => void;
 }
 
 function PictureDialog({item, isOpen, handleClose, isFavourite, toggleFavourite}: PictureDialogProps) {
@@ -43,7 +43,7 @@ function PictureDialog({item, isOpen, handleClose, isFavourite, toggleFavourite}
                 <IconButton
                     sx={{color: 'primary.main'}}
                     aria-label={`star ${item.title}`}
-                    onClick={() => toggleFavourite(item.date)}
+                    onClick={() => toggleFavourite(item)}
                     size="large"
                 >
                   {isFavourite ? <FavoriteIcon fontSize={"large"}/> : <FavoriteBorderIcon fontSize={"large"}/>}

@@ -1,41 +1,16 @@
-import React from 'react';
-import {Box, Container, Grid, Typography} from "@mui/material";
+import useSWR, {Key} from "swr";
+import {ApodType} from "../pictureTile";
 import Pictures from "../pictures";
-import DateSetter from "../dateSetter";
+import axios from "axios";
 
+export const fetcher = (url: string) => axios.get(url).then(res => res.data)
 
 function Main() {
-  return (
-      <Container fixed>
-        <Grid container columns={{ xs: 1, sm: 2, md: 2 }} sx={{margin: '60px 0 60px 0', borderBottom: 1 , borderColor: 'primary.contrastText', justifyContent: 'center'}}>
-          <Grid item >
-            <Typography sx={{
-              color: 'primary.contrastText',
-              fontFamily: "Major Mono Display",
-              fontSize:  ['3.1rem', '5rem', '7rem', '7rem', '7rem'],
+  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-12"}&end_date=${"2022-01-26"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
+  const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
 
-            }} variant="h1" component="div">
-              Astronomy
-            </Typography>
-            <Typography sx={{
-              color: 'primary.light',
-              fontFamily: "Major Mono Display",
-              fontSize: ['1.5rem', '2.5rem', '3.5rem', '3.5rem', '3.5rem'],
-              maxWidth: '100%',
-              marginBottom: 6
-            }} variant="h1" component="div" gutterBottom>
-              Picture of the Day
-            </Typography>
-          </Grid>
-          <Grid item sx={{marginBottom: 6, display: 'flex', justifyContent: 'center', alignItems:'flex-end', flexGrow:'1'}}>
-            <DateSetter/>
-          </Grid>
-        </Grid>
-        <Box>
-          <Pictures />
-        </Box>
-      </Container>
-  );
+  if (error) return <div>Sorry, we have encountered an error.</div>
+  return <Pictures apods={apods} />
 }
 
 export default Main;

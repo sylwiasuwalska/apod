@@ -1,6 +1,4 @@
-import React, {Fragment} from 'react';
-import axios from 'axios';
-import useSWR, {Key} from "swr";
+import React from 'react';
 import {
   ImageList,
   ImageListItem,
@@ -11,12 +9,12 @@ import PictureTile, {ApodType} from "../pictureTile";
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-export const fetcher = (url: string) => axios.get(url).then(res => res.data)
+export interface PicturesProps {
+  apods?: ApodType[]
+}
 
 
-function Pictures() {
-  const apiURL: Key = `https://api.nasa.gov/planetary/apod?start_date=${"2022-01-12"}&end_date=${"2022-01-26"}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`;
-  const {data: apods, error} = useSWR<ApodType[], boolean>(apiURL, fetcher)
+function Pictures({apods}: PicturesProps)  {
 
   const mobile = useMediaQuery('(max-width:600px)');
   const xs = useMediaQuery('(min-width:600px)');
@@ -32,18 +30,15 @@ function Pictures() {
 
   const placeholders = [...Array(15)]
 
-  if (error) return <div>Sorry, we have encountered an error.</div>
+
 
   if (apods) {
     return (
-        <Fragment>
           <ImageList variant="masonry" cols={getNumberOfColumns()} gap={8}>
           {apods.map((item) => (
                 <PictureTile key={item.url} item={item}/>
           ))}
         </ImageList>
-
-        </Fragment>
     );
   }
 

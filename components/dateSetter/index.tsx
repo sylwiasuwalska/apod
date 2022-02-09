@@ -6,7 +6,7 @@ import {DatePicker} from '@mui/lab';
 import PictureDialog from "../pictureDialog";
 import {ApodType} from "../pictureTile";
 import useSWR, {Key} from "swr";
-import {fetcher} from "../pictures";
+import {fetcher} from "../main";
 import { DateTime } from "luxon";
 import { useFavourite } from "../../hooks/useFavourite";
 

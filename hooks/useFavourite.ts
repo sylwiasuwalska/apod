@@ -1,20 +1,23 @@
 import {useState} from "react";
 import {getDataFromStorage, setDataToStorage} from "../utils/getDataFromStorage";
+import {ApodType} from "../components/pictureTile";
+
 
 export const useFavourite = (date: string) => {
   const favouritePictures = getDataFromStorage("favPics");
 
-  const [isFavourite, setIsFavourite] = useState<boolean>(favouritePictures ? favouritePictures.some((item: string) => item === date) : false);
+  const [isFavourite, setIsFavourite] = useState<boolean>(favouritePictures ? Object.keys(favouritePictures).some((element: string) => element === date) : false);
 
 
-  const toggleFavourite = (date: string) => {
+  const toggleFavourite = (item: ApodType) => {
     const favouritePictures = getDataFromStorage("favPics")
 
-    let picturesToSave: any[]
+    let picturesToSave: { [k: string]: ApodType };
     if (isFavourite) {
-      picturesToSave = favouritePictures.filter((item: string) => item !== date)
+      picturesToSave = favouritePictures;
+      delete picturesToSave[item.date]
     } else {
-      picturesToSave = [...favouritePictures, date]
+      picturesToSave = {...favouritePictures, [item.date]: item}
     }
     setDataToStorage("favPics", picturesToSave)
     setIsFavourite(!isFavourite)
