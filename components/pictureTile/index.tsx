@@ -28,7 +28,7 @@ function PictureTile({item}: PictureTileProps) {
 
 
   const handleClickingFavourite = (e: React.MouseEvent<HTMLElement>) => {
-    toggleFavourite(item.date);
+    toggleFavourite(item);
     e.stopPropagation();
   }
 

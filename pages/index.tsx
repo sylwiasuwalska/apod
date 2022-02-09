@@ -4,7 +4,8 @@ import Head from 'next/head'
 import Header from "../components/header";
 import {Box, Container} from "@mui/material";
 import React, { Fragment } from 'react';
-import Pictures from "../components/pictures";
+
+import Main from '../components/main';
 
 
 
@@ -19,7 +20,7 @@ const Home: NextPage = () => {
         <Header />
         <Container fixed>
         <Box>
-          <Pictures />
+          <Main />
         </Box>
         </Container>
       </Fragment>
