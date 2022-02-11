@@ -8,7 +8,7 @@ describe('Main', () => {
         const heading1 = screen.getByText('Astronomy')
         const heading2 = screen.getByText('Picture of the Day')
 
-        expect(heading1).not.toBeInTheDocument()
+        expect(heading1).toBeInTheDocument()
         expect(heading2).toBeInTheDocument()
     })
 
