@@ -16,10 +16,9 @@ Live demo is available [here!](https://apod-mu.vercel.app/) :tada: :tada: :tada:
 -   [ ] Use SSR
 -   [x] Add testing libraries and basic tests :test_tube: :test_tube: :test_tube:
 -   [ ] Add tests, tests and more tests
--   [x] Add GitHub Action for testing :clapper: :clapper: :clapper:
--   [ ] Add GitHub Action for deploying
+-   [x] Add GitHub Action for linting, testing and deploying :clapper: :clapper: :clapper:
 -   [x] Use Vercel for hosting :checkered_flag: :checkered_flag: :checkered_flag:
--   [ ] Add mobile version
+-   [x] Add mobile version :iphone: :iphone: :iphone:
 
 ## Getting Started
 
