@@ -51,4 +51,5 @@ jobs:
         with:
           type: now
           target_branch: master
+          message: 'Merged develop into master'
           github_token: ${{ github.token }}
