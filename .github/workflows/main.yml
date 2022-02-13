@@ -46,7 +46,7 @@ jobs:
           yarn test --coverage
 
       # Lint, format code, build app and run unit tests
-      - name: Cypress run
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
           build: yarn build
