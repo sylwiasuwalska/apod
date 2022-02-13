@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import Header from './index'
 
-describe('Main', () => {
+describe('Header', () => {
     it('renders a heading', () => {
         render(<Header />)
 

@@ -35,7 +35,7 @@ function Pictures({ apods }: PicturesProps) {
     }
 
     return (
-        <ImageList variant="masonry" cols={getNumberOfColumns()} gap={8}>
+        <ImageList variant="masonry" cols={getNumberOfColumns()} gap={8} data-testid={'loader'}>
             {placeholders.map((item, index) => {
                 return (
                     <ImageListItem key={index} sx={{ width: '100%', padding: '20px' }}>
