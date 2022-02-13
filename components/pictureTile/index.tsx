@@ -33,7 +33,7 @@ function PictureTile({ item }: PictureTileProps) {
 
     return (
         <Fragment>
-            <ImageListItem onClick={() => setOpen(true)}>
+            <ImageListItem onClick={() => setOpen(true)} sx={{ cursor: 'pointer' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src={item.media_type === 'image' ? getImageUrl(item.url) : getImageUrl(item.thumbnail_url)}

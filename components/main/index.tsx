@@ -11,7 +11,6 @@ function Main() {
         process.env.NEXT_PUBLIC_NASA_API_KEY
     }`
     const { data: apods, error } = useSWR<ApodType[], boolean>(apiURL, fetcher)
-
     if (error) return <div>Sorry, we have encountered an error.</div>
     return <Pictures apods={apods} />
 }
