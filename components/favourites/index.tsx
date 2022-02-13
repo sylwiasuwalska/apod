@@ -13,7 +13,9 @@ function Favourites() {
     }
     return (
         <Box sx={{ height: '800px' }}>
-            Add your favourites pictures using heart icons <FavoriteBorderIcon fontSize={'small'} />
+            <p>
+                Add your favourites pictures using heart icons <FavoriteBorderIcon fontSize={'small'} />
+            </p>
             <FavoriteBorderIcon fontSize={'small'} />
             <FavoriteBorderIcon fontSize={'small'} />
         </Box>
