@@ -53,8 +53,9 @@ jobs:
           start: yarn start
           record: true
         env:
-            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-            GITHUB_TOKEN: ${{ github.token }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          NEXT_PUBLIC_NASA_API_KEY: ${{ secrets.NEXT_PUBLIC_NASA_API_KEY }}
 
 
 
