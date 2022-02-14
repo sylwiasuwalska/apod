@@ -20,6 +20,6 @@ describe('Date Setter', () => {
         cy.get(':nth-child(2) > :nth-child(6) > .MuiButtonBase-root').click()
         cy.get('.MuiDialogContent-root').should('be.visible')
         cy.findByText('Close').should('be.enabled').click()
-        cy.findByText('Close').should('not.be.visible')
+        cy.get('.MuiDialogContent-root').should('not.be.visible')
     })
 })
