@@ -21,6 +21,6 @@ describe('Date Setter', () => {
         cy.get('.MuiDialogContent-root').should('be.visible')
         cy.findByText('Close').should('be.enabled')
         cy.findByText('Close').click()
-        cy.get('.MuiDialogContent-root').should('not.be.visible')
+        cy.get('.MuiDialogContent-root').should('not.exist')
     })
 })
