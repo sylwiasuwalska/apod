@@ -10,15 +10,16 @@ Live demo is available [here!](https://apod-mu.vercel.app/) :tada: :tada: :tada:
 
 ## Roadmap
 
--   [x] Use next.js :rocket: :rocket: :rocket:
--   [x] Use material-ui :crayon: :crayon: :crayon:
--   [x] Use useSWR for NASA APOD API :satellite: :moon: :satellite: :moon:
--   [ ] Use SSR
--   [x] Add testing libraries and basic tests :test_tube: :test_tube: :test_tube:
--   [ ] Add tests, tests and more tests
--   [x] Add GitHub Action for linting, testing and deploying :clapper: :clapper: :clapper:
--   [x] Use Vercel for hosting :checkered_flag: :checkered_flag: :checkered_flag:
--   [x] Add mobile version :iphone: :iphone: :iphone:
+- [x] Use next.js :rocket: :rocket: :rocket:
+- [x] Use material-ui :crayon: :crayon: :crayon:
+- [x] Use useSWR for NASA APOD API :satellite: :moon: :satellite: :moon:
+- [ ] Use SSR
+- [x] Add jest and react-testing-library :test_tube: :test_tube: :test_tube:
+- [x] Add Cypress :test_tube: :test_tube: :test_tube:
+- [ ] Add tests, tests and more tests
+- [x] Add GitHub Action for linting, testing and deploying :clapper: :clapper: :clapper:
+- [x] Use Vercel for hosting :checkered_flag: :checkered_flag: :checkered_flag:
+- [x] Add mobile version :iphone: :iphone: :iphone:
 
 ## Getting Started
 
