@@ -1,22 +1,60 @@
 {
-  "name": "apod",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.0.8",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "@types/node": "17.0.10",
-    "@types/react": "17.0.38",
-    "eslint": "8.7.0",
-    "eslint-config-next": "12.0.8",
-    "typescript": "4.5.5"
-  }
+    "name": "apod",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "prepare": "husky install",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "format": "prettier --write components hooks pages utils",
+        "cypress": "cypress open",
+        "cypress:headless": "cypress run"
+    },
+    "dependencies": {
+        "@date-io/luxon": "^2.13.1",
+        "@emotion/react": "^11.7.1",
+        "@emotion/styled": "^11.6.0",
+        "@fontsource/major-mono-display": "^4.5.2",
+        "@fontsource/roboto": "^4.5.1",
+        "@mui/icons-material": "^5.3.1",
+        "@mui/lab": "^5.0.0-alpha.67",
+        "@mui/material": "^5.3.1",
+        "@mui/system": "^5.3.0",
+        "@testing-library/jest-dom": "^5.16.2",
+        "@testing-library/react": "^12.1.2",
+        "@types/jest": "^27.4.0",
+        "@types/luxon": "^2.0.9",
+        "axios": "^0.25.0",
+        "jest": "^27.4.7",
+        "luxon": "^2.3.0",
+        "next": "12.0.9",
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "react-magnifier": "^3.0.4",
+        "react-player": "^2.9.0",
+        "swr": "^1.2.0"
+    },
+    "devDependencies": {
+        "@testing-library/cypress": "^8.0.2",
+        "@types/node": "17.0.10",
+        "@types/react": "17.0.38",
+        "@types/react-dom": "^17.0.11",
+        "cypress": "^9.4.1",
+        "eslint": "8.8.0",
+        "eslint-config-next": "12.0.8",
+        "husky": "^7.0.0",
+        "prettier": "^2.5.1",
+        "typescript": "4.5.5"
+    },
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true,
+        "bracketSpacing": true,
+        "printWidth": 120
+    }
 }

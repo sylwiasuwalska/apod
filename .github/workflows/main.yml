@@ -1,0 +1,69 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 14.17.0 ]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Choose node version
+      - name: Use node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Lint and format code, build app and run unit tests
+      - name: Install, build and run tests
+        run: |
+          npm install -g yarn
+          yarn install
+          yarn lint
+          yarn format
+          yarn build
+          yarn test --coverage
+
+      # Lint, format code, build app and run unit tests
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          build: yarn build
+          start: yarn start
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          NEXT_PUBLIC_NASA_API_KEY: ${{ secrets.NEXT_PUBLIC_NASA_API_KEY }}
+
+
+
+      # Merge develop into master so Vercel picks up to deploy
+      - name: Merge develop -> master
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: master
+          message: 'Merged develop into master'
+          github_token: ${{ github.token }}

@@ -1,28 +1,24 @@
-import type { NextPage } from 'next'
+import { NextPage } from 'next'
 import Head from 'next/head'
-
 import Header from '../components/header'
-import { Box, Container } from '@mui/material'
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
+import { Container } from '@mui/material'
+import Favourites from '../components/favourites'
 
-import Main from '../components/main'
-
-const Home: NextPage = () => {
+const FavouritesPage: NextPage = () => {
     return (
         <Fragment>
             <Head>
-                <title>Astronomy Picture of the Day</title>
+                <title>Favourites | Astronomy Picture of the Day</title>
                 <meta name="description" content="Astronomy Picture of the Day" />
                 <link rel="icon" href="/logo.svg" />
             </Head>
             <Header />
             <Container fixed>
-                <Box>
-                    <Main />
-                </Box>
+                <Favourites />
             </Container>
         </Fragment>
     )
 }
 
-export default Home
+export default FavouritesPage
