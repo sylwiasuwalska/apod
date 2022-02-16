@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import PictureTile from './index'
+import '@testing-library/jest-dom'
 
 const mockedItemImage = {
     url: 'https://mocked.url',
