@@ -112,7 +112,6 @@ function PictureDialog({ item, isOpen, handleClose, isFavourite, toggleFavourite
                                 size="medium"
                                 variant="outlined"
                                 href={`/${item.date}`}
-                                target="_blank"
                                 rel="noreferrer"
                                 startIcon={<ZoomInIcon />}
                             >

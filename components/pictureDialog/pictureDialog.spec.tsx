@@ -54,7 +54,6 @@ describe('PictureDialog', () => {
 
         expect(link).toHaveAttribute('href', `/${mockedItemImage.date}`)
         expect(link).toHaveAttribute('rel', 'noreferrer')
-        expect(link).toHaveAttribute('target', '_blank')
     })
 
     it('renders picture dialog with close button', () => {
