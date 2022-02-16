@@ -1,4 +1,4 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { fireEvent, render, screen, waitForElementToBeRemoved } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Picture from '../picture'
 import axios from 'axios'
@@ -46,6 +46,9 @@ describe('Picture', () => {
             jest.runAllTimers()
         })
         await waitForElementToBeRemoved(() => screen.getByTestId('loader'))
+
+        const infoIcon = screen.getByLabelText('open more details')
+        fireEvent.click(infoIcon)
 
         const title = screen.getByText(mockedDataFromAPI.title)
         const copyright = screen.getByText(mockedDataFromAPI.copyright)

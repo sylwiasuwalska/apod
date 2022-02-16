@@ -40,33 +40,7 @@ describe('PictureDialog', () => {
         const desc = screen.getByText(mockedItemImage.explanation)
         const date = screen.getByText(mockedItemImage.date)
         const image = screen.getByTestId('apod-image')
-        const link = screen.queryByText('View HD picture in a new tab')
-
-        expect(title).toBeInTheDocument()
-        expect(author).toBeInTheDocument()
-        expect(desc).toBeInTheDocument()
-        expect(date).toBeInTheDocument()
-        expect(image).toBeInTheDocument()
-        expect(link).toBeInTheDocument()
-    })
-
-    it('renders picture dialog with title, author, description, date, image and link for videos', () => {
-        render(
-            <PictureDialog
-                item={mockedItemVideo}
-                isOpen={true}
-                handleClose={() => {}}
-                isFavourite={false}
-                toggleFavourite={() => {}}
-            />
-        )
-
-        const title = screen.getByText(mockedItemVideo.title)
-        const author = screen.getByText(mockedItemVideo.copyright)
-        const desc = screen.getByText(mockedItemVideo.explanation)
-        const date = screen.getByText(mockedItemVideo.date)
-        const image = screen.getByTestId('apod-image')
-        const link = screen.getByText('Watch video in a new tab')
+        const link = screen.queryByText('Go to picture')
 
         expect(title).toBeInTheDocument()
         expect(author).toBeInTheDocument()
@@ -89,25 +63,7 @@ describe('PictureDialog', () => {
 
         const link = screen.getByRole('link')
 
-        expect(link).toHaveAttribute('href', mockedItemImage.hdurl)
-        expect(link).toHaveAttribute('rel', 'noreferrer')
-        expect(link).toHaveAttribute('target', '_blank')
-    })
-
-    it('renders picture dialog links with proper attributes for video', () => {
-        render(
-            <PictureDialog
-                item={mockedItemVideo}
-                isOpen={true}
-                handleClose={() => {}}
-                isFavourite={false}
-                toggleFavourite={() => {}}
-            />
-        )
-
-        const link = screen.getByRole('link')
-
-        expect(link).toHaveAttribute('href', mockedItemVideo.url)
+        expect(link).toHaveAttribute('href', `/${mockedItemImage.date}`)
         expect(link).toHaveAttribute('rel', 'noreferrer')
         expect(link).toHaveAttribute('target', '_blank')
     })
