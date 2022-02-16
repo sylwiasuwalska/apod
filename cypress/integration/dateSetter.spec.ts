@@ -5,7 +5,6 @@ describe('Date Setter', () => {
     it('should allow using date picker and  opens dialog', () => {
         cy.get('#mui-4').clear()
         cy.get('#mui-4').type('2022/02/12')
-        //Open dialog
         cy.get('.MuiDialogContent-root').should('be.visible')
     })
     it('should allow using date picker calendar and opens dialog', () => {
