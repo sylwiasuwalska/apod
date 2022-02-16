@@ -2,7 +2,6 @@ import React, { MouseEvent } from 'react'
 import { Button, Dialog, DialogActions, DialogContent, IconButton, Paper, Tooltip, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { ApodType } from '../pictureTile'
-import YouTubeIcon from '@mui/icons-material/YouTube'
 import ZoomInIcon from '@mui/icons-material/ZoomIn'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
@@ -108,52 +107,17 @@ function PictureDialog({ item, isOpen, handleClose, isFavourite, toggleFavourite
                             {item.date}
                         </Typography>
 
-                        {item.media_type === 'video' && (
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    textAlign: mobile ? 'center' : 'right',
-                                    fontWeight: 'bold',
-                                    padding: 3,
-                                    color: 'primary.light',
-                                }}
-                                gutterBottom
+                        <Box sx={{ textAlign: 'right', margin: 3 }}>
+                            <Button
+                                size="medium"
+                                variant="outlined"
+                                href={`/${item.date}`}
+                                rel="noreferrer"
+                                startIcon={<ZoomInIcon />}
                             >
-                                <Button
-                                    size="medium"
-                                    variant="outlined"
-                                    href={item.url}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    startIcon={<YouTubeIcon />}
-                                >
-                                    {mobile ? 'Watch video' : 'Watch video in a new tab'}
-                                </Button>
-                            </Typography>
-                        )}
-                        {item.media_type === 'image' && (
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    textAlign: mobile ? 'center' : 'right',
-                                    fontWeight: 'bold',
-                                    padding: 3,
-                                    color: 'primary.light',
-                                }}
-                                gutterBottom
-                            >
-                                <Button
-                                    size="medium"
-                                    variant="outlined"
-                                    href={item.hdurl}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    startIcon={<ZoomInIcon />}
-                                >
-                                    {mobile ? 'View HD picture' : 'View HD picture in a new tab'}
-                                </Button>
-                            </Typography>
-                        )}
+                                {'Go to picture'}
+                            </Button>
+                        </Box>
                     </Paper>
                 </Box>
             </DialogContent>
