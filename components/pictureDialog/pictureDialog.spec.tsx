@@ -12,17 +12,6 @@ const mockedItemImage = {
     hdurl: 'https://hdurl.url',
 }
 
-const mockedItemVideo = {
-    url: 'https://mocked.url.for.video',
-    title: 'Mocked Item Title - Video',
-    copyright: 'Mocked Item Author - Video',
-    media_type: 'video',
-    thumbnail_url: 'Mocked Item Thumbnail - Video',
-    explanation: 'Mocked Item Explanation Text - Video',
-    date: '2022-02-04',
-    hdurl: 'https://hdurl.url',
-}
-
 describe('PictureDialog', () => {
     it('renders picture dialog with title, author, description, date, image and link', () => {
         render(

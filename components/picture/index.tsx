@@ -10,6 +10,7 @@ import { DateTime } from 'luxon'
 import PictureDescription from './pictureDescription'
 import Magnifier from 'react-magnifier'
 import PictureIcons from '../pictureDialog/pictureIcons'
+import ReactPlayer from 'react-player'
 
 interface PictureProps {
     date: string
@@ -53,12 +54,16 @@ function Picture({ date }: PictureProps) {
                                 isInfoOpen={isInfoOpen}
                             />
                         </Box>
-                        <Magnifier
-                            src={apod.hdurl}
-                            mgWidth={mobile ? 100 : 300}
-                            mgHeight={mobile ? 100 : 300}
-                            mgBorderWidth={0}
-                        />
+                        {apod.media_type === 'image' ? (
+                            <Magnifier
+                                src={apod.hdurl}
+                                mgWidth={mobile ? 100 : 300}
+                                mgHeight={mobile ? 100 : 300}
+                                mgBorderWidth={0}
+                            />
+                        ) : (
+                            <ReactPlayer url={apod.url} width="100%" height="600px" controls={true} />
+                        )}
                     </Fragment>
                 </Box>
                 <Dialog fullWidth maxWidth={'md'} open={isInfoOpen} onClose={() => setIsInfoOpen(false)}>
