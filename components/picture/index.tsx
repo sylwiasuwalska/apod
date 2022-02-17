@@ -21,7 +21,7 @@ function Picture({ date }: PictureProps) {
 
     const apiURL: Key = `https://api.nasa.gov/planetary/apod?date=${date}&thumbs=true&api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}`
 
-    const { data: apod, error } = useSWR<ApodType, boolean>(apiURL, fetcher)
+    const { data: apod, error } = useSWR<ApodType, boolean>(date ? apiURL : null, fetcher)
     const { isFavourite, toggleFavourite } = useFavourite(date)
     const [isInfoOpen, setIsInfoOpen] = useState(false)
 
