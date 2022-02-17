@@ -9,7 +9,7 @@
         "prepare": "husky install",
         "test": "jest",
         "test:watch": "jest --watch",
-        "format": "prettier --write components hooks pages utils",
+        "format": "prettier --write components hooks pages utils cypress",
         "cypress": "cypress open",
         "cypress:headless": "cypress run"
     },
