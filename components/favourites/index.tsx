@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
-import { getDataFromStorage } from '../../utils/getDataFromStorage'
+import React, { useContext } from 'react'
 import Pictures from '../pictures'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { Box } from '@mui/system'
+import { FavouritesContext } from '../../contexts/favourites/favouritesContext'
 
 function Favourites() {
-    const favouritePictures = getDataFromStorage('favPics')
-    const [favPics] = useState(Object.values(favouritePictures))
+    const { favouritePictures } = useContext(FavouritesContext)
 
-    if (Object.keys(favPics).length) {
-        return <Pictures apods={favPics} />
+    if (Object.keys(favouritePictures).length) {
+        return <Pictures apods={Object.values(favouritePictures)} />
     }
     return (
         <Box sx={{ height: '800px' }}>
