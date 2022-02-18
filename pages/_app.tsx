@@ -7,6 +7,7 @@ import '@fontsource/major-mono-display'
 import type { AppProps } from 'next/app'
 import { CssBaseline } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { FavouritesProvider } from '../contexts/favourites/favouritesContext'
 
 const theme = createTheme({
     palette: {
@@ -29,8 +30,10 @@ const theme = createTheme({
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
+            <FavouritesProvider>
+                <CssBaseline />
+                <Component {...pageProps} />
+            </FavouritesProvider>
         </ThemeProvider>
     )
 }
