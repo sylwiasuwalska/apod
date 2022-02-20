@@ -6,6 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import Badge from '@mui/material/Badge'
 import { FavouritesContext } from '../../contexts/favourites/favouritesContext'
 import { useContext } from 'react'
+import NoSsr from '@mui/material/NoSsr'
 
 function FavouriteLink() {
     const mobile = useMediaQuery('(max-width:600px)')
@@ -15,13 +16,16 @@ function FavouriteLink() {
             <Box sx={{ position: 'absolute', top: mobile ? 0 : '20px', right: mobile ? 0 : '20px' }}>
                 <Link href="/favourites" passHref>
                     <IconButton sx={{ color: 'primary.header' }} aria-label={`Your favourites pictures`} size="large">
-                        <Badge badgeContent={Object.keys(favouritePictures).length} color="primary">
-                            <FavoriteBorderIcon fontSize={mobile ? 'medium' : 'large'} />
-                        </Badge>
+                        <NoSsr defer={true}>
+                            <Badge badgeContent={Object.keys(favouritePictures).length} color="primary">
+                                <FavoriteBorderIcon fontSize={mobile ? 'medium' : 'large'} />
+                            </Badge>
+                        </NoSsr>
                     </IconButton>
                 </Link>
             </Box>
         </Tooltip>
     )
 }
+
 export default FavouriteLink
